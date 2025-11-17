@@ -1,4 +1,17 @@
-<app-player></app-player>
+<div class="player-container">
+    <app-player *ngFor="let player of game.players; let i = index;"
+        class="player-position" 
+        [playerActiv]="i == game.currentPlayerIndex"
+        [name]="player.name"
+        [avatar]="player.avatar">
+    </app-player>
+    
+    <button mat-fab extended (click)="openDialog()" class="add-player-btn">
+        <mat-icon>add</mat-icon>
+        Spieler hinzufügen
+    </button>
+</div>
+
 <div class="game-container">
     <div class="card-stack">
         <img *ngFor="let card of [1,2,3,4,5,6]; let i = index;" 
@@ -22,3 +35,5 @@
         /> 
     </div>
 </div>
+
+<app-game-info class="pin-bottom"></app-game-info>
