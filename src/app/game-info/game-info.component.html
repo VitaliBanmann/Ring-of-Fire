@@ -1,6 +1,15 @@
 <mat-card>
-    <mat-card-title>{{ card ? title : 'Please pick a card' }}</mat-card-title>
-    <mat-card-content>
-        {{ card ? description : 'Plese click on the card stack to select the next card.' }}
-    </mat-card-content>
+  <mat-card-title>
+    {{ card ? title : (currentPlayerName ? currentPlayerName + ', du bist dran!' : 'Willkommen bei Ring of Fire') }}
+  </mat-card-title>
+  <mat-card-content>
+    {{ card ? description : '' }}
+  </mat-card-content>
+  <mat-card-actions>
+    <p class="action-hint">
+      {{ currentPlayerName 
+          ? 'Klicke auf den Kartenstapel, um die nächste Karte zu ziehen.' 
+          : 'Bitte füge dich und deine Mitspieler auf der rechten Seite hinzu.' }}
+    </p>
+  </mat-card-actions>
 </mat-card>

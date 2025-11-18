@@ -50,13 +50,21 @@ export class GameComponent {
   }
 
   takeCard() {
-    if (!this.pickCardAnimation) {
+    if (this.game.players.length === 0) {
+      this.openDialog();
+      return;
+    }
+    
+    if (!this.pickCardAnimation && this.game.deck.length > 0) {
       this.currentCard = this.game.deck.pop() || '';
       this.pickCardAnimation = true;
+      
       setTimeout(() => {
-        this.pickCardAnimation = false;
         this.game.playedCards.push(this.currentCard);
-      }, 2000);
+        this.pickCardAnimation = false;
+        this.game.currentPlayerIndex++;
+        this.game.currentPlayerIndex = this.game.currentPlayerIndex % this.game.players.length;
+      }, 1000);
     }
   }
 }

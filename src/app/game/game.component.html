@@ -36,4 +36,8 @@
     </div>
 </div>
 
-<app-game-info class="pin-bottom"></app-game-info>
+<app-game-info
+  [card]="currentCard"
+  [currentPlayerName]="game.players[game.currentPlayerIndex]?.name ?? null"
+  class="pin-bottom">
+</app-game-info>
