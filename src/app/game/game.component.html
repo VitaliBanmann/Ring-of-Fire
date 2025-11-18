@@ -27,12 +27,21 @@
         <img *ngFor="let playedCard of game.playedCards; let i = index;" 
             class="played-card"
             src="assets/svg-cards/{{playedCard}}.svg" alt="aufgedeckte Karte"/>
-        <img *ngIf="pickCardAnimation" 
-            class="pick-card" 
-            [ngStyle]="{'right.px': getVisibleStackCards().length * 5, 'bottom.px': getVisibleStackCards().length * 2}"  
-            src="assets/svg-cards/{{currentCard}}.svg" 
-            alt="aufgedeckte Karte"
-        /> 
+        
+        <div *ngIf="pickCardAnimation" 
+            class="pick-card-flip-container"
+            [ngStyle]="{'right.px': getVisibleStackCards().length * 5, 'bottom.px': getVisibleStackCards().length * 2}">
+            <div class="pick-card-flip-inner">
+                <img class="pick-card-back" 
+                    src="assets/svg-cards/cover1.jpg" 
+                    alt="card-back"
+                />
+                <img class="pick-card-front" 
+                    src="assets/svg-cards/{{currentCard}}.svg" 
+                    alt="aufgedeckte Karte"
+                />
+            </div>
+        </div>
     </div>
 </div>
 
