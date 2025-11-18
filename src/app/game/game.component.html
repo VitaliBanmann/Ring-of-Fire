@@ -14,13 +14,13 @@
 
 <div class="game-container">
     <div class="card-stack">
-        <img *ngFor="let card of [1,2,3,4,5,6]; let i = index;" 
+        <img *ngFor="let card of getVisibleStackCards(); let i = index;" 
             [ngStyle]="{'right.px': i * 5, 'bottom.px': i * 2}"  
             src="assets/svg-cards/cover1.jpg" 
             alt="card-back" 
         />
         <img (click)="takeCard()" 
-            [ngStyle]="{'right.px': 35, 'bottom.px': 14}"  
+            [ngStyle]="{'right.px': getVisibleStackCards().length * 5, 'bottom.px': getVisibleStackCards().length * 2}"  
             src="assets/svg-cards/cover1.jpg" 
             alt="card-back" 
         />
@@ -29,7 +29,7 @@
             src="assets/svg-cards/{{playedCard}}.svg" alt="aufgedeckte Karte"/>
         <img *ngIf="pickCardAnimation" 
             class="pick-card" 
-            [ngStyle]="{'right.px': 35, 'bottom.px': 14}"  
+            [ngStyle]="{'right.px': getVisibleStackCards().length * 5, 'bottom.px': getVisibleStackCards().length * 2}"  
             src="assets/svg-cards/{{currentCard}}.svg" 
             alt="aufgedeckte Karte"
         /> 

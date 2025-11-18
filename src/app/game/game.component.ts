@@ -36,6 +36,30 @@ export class GameComponent {
     this.game = new Game();
   }
 
+  getVisibleStackCards(): number[] {
+    const remainingCards = this.game.deck.length;
+    
+    let visibleCards = 0;
+    
+    if (remainingCards > 40) {
+      visibleCards = 6;
+    } else if (remainingCards > 10) {
+      visibleCards = 5;
+    } else if (remainingCards > 7) {
+      visibleCards = 4;
+    } else if (remainingCards > 5) {
+      visibleCards = 3;
+    } else if (remainingCards > 3) {
+      visibleCards = 2;
+    } else if (remainingCards > 0) {
+      visibleCards = 1;
+    } else {
+      visibleCards = 0;
+    }
+    
+    return Array(visibleCards).fill(0).map((_, i) => i);
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayer);
 
