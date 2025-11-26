@@ -1,14 +1,19 @@
 <div class="player-container">
     <app-player *ngFor="let player of game.players; let i = index;"
-        class="player-position" 
+        class="player-position hide-mobile" 
         [playerActiv]="i == game.currentPlayerIndex"
         [name]="player.name"
         [avatar]="player.avatar">
     </app-player>
-    
+    <app-player-mobile *ngFor="let player of game.players; let i = index;"
+        class="player-position-mobile hide-desktop" 
+        [playerActiv]="i == game.currentPlayerIndex"
+        [name]="player.name"
+        [avatar]="player.avatar">
+    </app-player-mobile>
     <button mat-fab extended (click)="openDialog()" class="add-player-btn">
-        <mat-icon>add</mat-icon>
-        Spieler hinzufügen
+        <mat-icon >add</mat-icon>
+        <span class="hide-mobile">Spieler hinzufügen</span>
     </button>
 </div>
 
@@ -19,25 +24,26 @@
             src="assets/svg-cards/cover1.jpg" 
             alt="card-back" 
         />
-        <img (click)="takeCard()" 
+        <img *ngIf="game.deck.length > 0" 
+            (click)="takeCard()" 
             [ngStyle]="{'right.px': getVisibleStackCards().length * 5, 'bottom.px': getVisibleStackCards().length * 2}"  
             src="assets/svg-cards/cover1.jpg" 
             alt="card-back" 
         />
-        <img *ngFor="let playedCard of game.playedCards; let i = index;" 
+        <img *ngIf="game.playedCards.length > 0" 
             class="played-card"
-            src="assets/svg-cards/{{playedCard}}.svg" alt="aufgedeckte Karte"/>
+            [src]="'assets/svg-cards/' + game.playedCards[game.playedCards.length - 1] + '.svg'" 
+            alt="aufgedeckte Karte"/>
         
-        <div *ngIf="pickCardAnimation" 
-            class="pick-card-flip-container"
-            [ngStyle]="{'right.px': getVisibleStackCards().length * 5, 'bottom.px': getVisibleStackCards().length * 2}">
+        <div *ngIf="game.pickCardAnimation" 
+            class="pick-card-flip-container">
             <div class="pick-card-flip-inner">
                 <img class="pick-card-back" 
                     src="assets/svg-cards/cover1.jpg" 
                     alt="card-back"
                 />
                 <img class="pick-card-front" 
-                    src="assets/svg-cards/{{currentCard}}.svg" 
+                    src="assets/svg-cards/{{game.currentCard}}.svg" 
                     alt="aufgedeckte Karte"
                 />
             </div>
@@ -46,7 +52,7 @@
 </div>
 
 <app-game-info
-  [card]="currentCard"
+  [card]="game.currentCard"
   [currentPlayerName]="game.players[game.currentPlayerIndex]?.name ?? null"
   class="pin-bottom">
 </app-game-info>

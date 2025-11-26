@@ -8,34 +8,44 @@
     background-image: url('/assets/background.jpg');
     background-size: cover;
     background-position: center;
+    padding-right: 300px;
 }
 
 .card-stack {
     position: relative;
     width: 0px;
-    height: 300px;
+    height: 300px;  
     
     img {
         position: absolute;
         width: 200px;
         border-radius: 7px;
+        
+        &:nth-child(1) { right: 0px; bottom: 0px; }
+        &:nth-child(2) { right: 5px; bottom: 5px; }
+        &:nth-child(3) { right: 10px; bottom: 10px; }
+        &:nth-child(4) { right: 15px; bottom: 15px; }
+        &:nth-child(5) { right: 20px; bottom: 20px; }
+        &:nth-child(6) { right: 25px; bottom: 25px; }
     }
 }
 
 .pick-card-flip-container {
-    position: absolute;
-    width: 200px;
-    height: 280px;
-    perspective: 1000px;
-    z-index: 100;
+position: absolute;
+width: 200px;
+height: 280px;
+perspective: 1000px;
+z-index: 100;
+right: 0;
+bottom: 0;
 }
-
 .pick-card-flip-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    animation: pick-card-animation-3d 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+position: relative;
+width: 100%;
+height: 100%;
+transform-style: preserve-3d;
+animation: 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+animation-name: pick-card-animation-3d;
 }
 
 .pick-card-back,
@@ -56,30 +66,19 @@
 }
 
 @keyframes pick-card-animation-3d {
-    0% {
-        transform: scale(1) translateX(0) translateY(0) rotateY(0deg) rotate(0deg);
-    }
-    15% {
-        transform: scale(1.1) translateX(10px) translateY(-15px) rotateY(0deg) rotate(2deg);
-    }
-    40% {
-        transform: scale(1.3) translateX(100px) translateY(-90px) rotateY(90deg) rotate(3deg);
-    }
-    50% {
-        transform: scale(1.3) translateX(150px) translateY(-120px) rotateY(180deg) rotate(5deg);
-    }
-    85% {
-        transform: scale(1.0) translateX(350px) translateY(-180px) rotateY(180deg) rotate(-8deg);
-    }
-    100% {
-        transform: translateX(400px) translateY(-200px) rotateY(180deg) rotate(-5deg);
-    }
+0% { transform: scale(1) translateX(0) translateY(0) rotateY(0deg) rotate(-2deg); }
+20% { transform: scale(1.1) translateX(20px) translateY(-20px) rotateY(36deg) rotate(-3deg); }
+40% { transform: scale(1.2) translateX(80px) translateY(-40px) rotateY(108deg) rotate(-4deg); }
+50% { transform: scale(1.3) translateX(120px) translateY(-50px) rotateY(180deg) rotate(-5deg); }
+80% { transform: scale(1.05) translateX(260px) translateY(-10px) rotateY(180deg) rotate(2deg); }
+100% { transform: scale(1) translateX(300px) translateY(0) rotateY(180deg) rotate(5deg); }
 }
 
 .played-card {
-    right: 100px;
-    bottom: -200px;
-    transform: scale(1) translateX(400px) translateY(-200px) rotate(-5deg);
+position: absolute;
+right: 0;
+bottom: 0;
+transform: scale(1) translateX(300px) translateY(0) rotate(5deg);
 }
 
 .pin-bottom {
@@ -90,11 +89,11 @@
 }
 
 .player-container {
-    background-color: rgba(128, 128, 128, 0.384);
     padding: 30px 0px 30px 30px;
     position: absolute;
     right: 0px;
-    top: 100px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -113,4 +112,38 @@
     &:hover {
         background-color: #45a049 !important;
     }
+}
+
+//desktops
+@media (max-width: 1200px) {
+.card-stack img {
+    width: 150px;
+    }
+
+.pick-card-flip-container {
+    width: 150px;
+    height: 210px;
+    }
+
+.pick-card-back, .pick-card-front {
+    width: 150px;
+    height: 210px;
+    }
+
+.pick-card-flip-inner {
+    animation-name: pick-card-animation-3d-compact;
+}
+
+@keyframes pick-card-animation-3d-compact {
+0% { transform: scale(1) translateX(0) translateY(-300px) rotateY(0deg) rotate(-2deg); }
+20% { transform: scale(1.1) translateX(20px) translateY(-320px) rotateY(36deg) rotate(-3deg); }
+40% { transform: scale(1.2) translateX(80px) translateY(-340px) rotateY(108deg) rotate(-4deg); }
+50% { transform: scale(1.3) translateX(120px) translateY(-350px) rotateY(180deg) rotate(-5deg); }
+80% { transform: scale(1.05) translateX(260px) translateY(-310px) rotateY(180deg) rotate(2deg); }
+100% { transform: scale(1) translateX(300px) translateY(-300px) rotateY(180deg) rotate(5deg); }
+}
+
+.played-card {
+transform: scale(1) translateX(300px) translateY(0px) rotate(5deg);
+}
 }

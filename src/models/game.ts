@@ -9,8 +9,9 @@ export class Game {
     public currentPlayerIndex: number = 0;
     public deck: string[] = [];
     public playedCards: string[] = [];
+    public currentCard: string = '';
+    public pickCardAnimation: boolean = false;
     
-    // Verfügbare Avatar-Positionen
     private availableMaleAvatars: string[] = [
         '5% 5%',    // Position 0 (oben links)
         '95% 5%',   // Position 2 (oben rechts)
@@ -37,6 +38,17 @@ export class Game {
         }
         
         this.shuffle(this.deck);
+    }
+
+    public toJson() {
+        return {
+            players: this.players,
+            currentPlayerIndex: this.currentPlayerIndex,
+            deck: this.deck,
+            playedCards: this.playedCards,
+            currentCard: this.currentCard,
+            pickCardAnimation: this.pickCardAnimation,
+        };
     }
 
     addPlayer(name: string, gender: 'male' | 'female'): boolean {
