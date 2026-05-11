@@ -1,59 +1,117 @@
-# Ringoffire
+# 🔥 Ring of Fire - Angular Card Game
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+> Ein interaktives Kartenspiel mit Angular und Firebase für Echtzeit-Multiplayer-Erlebnis.
 
-## Development server
+## 🎮 Features
 
-To start a local development server, run:
+- ✅ **Kartenspiel-Logik** - Vollständige Game-Mechanik
+- ✅ **Echtzeit-Multiplayer** - Firebase Realtime Database
+- ✅ **Benutzer-Profile** - Spieler-Management mit Auth
+- ✅ **Score-Tracking** - Statistiken und Leaderboards
+- ✅ **Responsive UI** - Optimiert für alle Geräte
+- ✅ **Animations** - Smooth Game-Feedback
 
-```bash
-ng serve
-```
+## 🔧 Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Frontend:** Angular 17+
+- **Backend:** Firebase/Firestore
+- **Echtzeit:** Firebase Realtime Database
+- **Authentifizierung:** Firebase Authentication
+- **Styling:** SCSS/CSS3
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## 🚀 Installation & Setup
 
 ```bash
-ng build
+# 1. Dependencies installieren
+npm install
+
+# 2. Firebase konfigurieren
+# - Firebase Projekt erstellen
+# - Config in src/environments/environment.ts eintragen
+
+# 3. Dev-Server starten
+npm start
+
+# 4. App im Browser öffnen
+# http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 📖 Spielanleitung
 
-## Running unit tests
+1. **Registrierung** - Neues Konto erstellen
+2. **Einloggen** - Mit Credentials anmelden
+3. **Spiel starten** - Neues Spiel erstellen oder beitreten
+4. **Spielen** - Karten-Regeln folgen und gewinnen!
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🔨 Verfügbare Befehle
 
 ```bash
-ng test
+npm start              # Entwicklungs-Server
+npm run build         # Production Build
+npm test              # Unit Tests
+npm run e2e           # End-to-End Tests
 ```
 
-## Running end-to-end tests
+## 📁 Projektstruktur
 
-For end-to-end (e2e) testing, run:
+```
+src/
+├── app/
+│   ├── components/       # UI-Komponenten
+│   ├── pages/           # Game Pages
+│   ├── services/        # Game & Firebase Services
+│   ├── models/          # Data Models
+│   └── guards/          # Route Guards
+├── assets/              # Bilder & Icons
+├── environments/        # Firebase Config
+└── styles/             # Globale Styles
+```
+
+## 🔐 Firebase Setup
+
+1. Firebase Console öffnen
+2. Realtime Database erstellen
+3. Authentication aktivieren
+4. Config in `environment.ts` eintragen:
+
+```typescript
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: 'YOUR_API_KEY',
+    authDomain: 'YOUR_AUTH_DOMAIN',
+    databaseURL: 'YOUR_DB_URL',
+    projectId: 'YOUR_PROJECT_ID',
+    // ...
+  }
+};
+```
+
+## 🚢 Deployment
 
 ```bash
-ng e2e
+# Production Build
+npm run build
+
+# Deploy mit Firebase
+firebase deploy
+
+# Oder mit Vercel/Netlify
+vercel deploy
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🆘 Troubleshooting
 
-## Additional Resources
+### Firebase Connection fehlgeschlagen
+- Firebase Config in `environment.ts` überprüfen
+- Firebase Projektregeln überprüfen
+- Browser Console für Fehler checken
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Echtzeit-Updates funktionieren nicht
+- Firestore Regeln überprüfen
+- Internet-Connection testen
+- Firebase Admin SDK Permissions überprüfen
+
+---
+
+_Ein spannendes Multiplayer-Kartenspiel mit Angular & Firebase._
